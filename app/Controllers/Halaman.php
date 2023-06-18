@@ -13,8 +13,8 @@ class Halaman extends BaseController
         $data['isi_halaman']    = "Semoga Sehat selalu, Patuhi 5M";
         $data['gerakan5m'] = ['Memakai Masker', 'Mencuci tangan', 'Menjaga Jarak', 'Menjauhi Kerumunan', 'Membatasi Mobilitas'];
 
-        echo view("header", $data);
+        #echo view("header", $data);
         echo view('konten/halaman', $data);
-        echo view('footer');
+        #echo view('footer');
     }
 }
