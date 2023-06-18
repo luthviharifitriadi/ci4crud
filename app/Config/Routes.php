@@ -24,9 +24,11 @@ $routes->group('siswa', static function ($routes){
     $routes->get('siswa_detail/(:any)/(:any)', 'Siswa::siswa_detail/$1/$2' );
 });
 
+//CRUD routes
 $routes->group('halaman', static function ($routes){
     $routes->get('/', 'halaman::index');
     $routes->match(['get', 'post'], 'create', [Halaman::class, 'create']);
+     $routes->get('read', 'halaman::read');
 });
 // The Auto Routing (Legacy) is very dangerous. It is easy to create vulnerable apps
 // where controller filters or CSRF protection are bypassed.

@@ -41,5 +41,13 @@ class Halaman extends BaseController
         echo view("konten/halaman_create", $data);
     }
 
-   
+    public function read()
+    {
+        $halamanModel = new ModelHalaman();
+
+        $data['title'] = "Menampilkan Data Baru";
+        $data['halaman_isi'] = $halamanModel->findAll();
+        echo view('konten/halaman_read', $data);
+        
+    }
 }
