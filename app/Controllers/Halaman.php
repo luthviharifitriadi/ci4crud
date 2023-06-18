@@ -2,7 +2,9 @@
 
 namespace App\Controllers;
 
+use App\Models\ModelHalaman;
 use App\Controllers\BaseController;
+
 
 class Halaman extends BaseController
 {
@@ -17,4 +19,27 @@ class Halaman extends BaseController
         echo view('konten/halaman', $data);
         #echo view('footer');
     }
+
+    //CRUD : Create, Read, Update, Delete
+    public function create()
+    {   
+        $halamanModel = new ModelHalaman();
+        $rules = $this->validate([
+            'halaman_judul' => 'required',
+            'halaman_isi'   => 'required',
+        ]);
+
+        if($rules){
+            $halamanModel->insert([
+                "halaman_judul" => $this->request->getPost('halaman_judul'),
+                "halaman_isi"   => $this->request->getPost('halaman_isi'), 
+            ]);
+            redirect('halaman/create','refresh');
+        }
+
+        $data['title']  = "Memasukan data baru";
+        echo view("konten/halaman_create", $data);
+    }
+
+   
 }
