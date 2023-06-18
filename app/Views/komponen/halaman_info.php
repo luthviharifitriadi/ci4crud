@@ -1,0 +1,1 @@
+Ditulis dalam kategori: <b> <?= $parameter['kategori'] ?></b> dengan penulis: <b><?= $parameter['penulis'] ?></b>
