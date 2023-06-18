@@ -1,11 +1,14 @@
 <?php
 
 namespace App\Controllers;
+use App\Controllers\admin\Siswa as Adminsiswa;
 
 class Siswa extends BaseController
 {
     public function index()
     {
+        $Adminsiswa = new Adminsiswa();
+        $Adminsiswa->index();
         return view('siswa');
     }
 
