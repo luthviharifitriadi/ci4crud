@@ -13,5 +13,12 @@ class Siswa extends BaseController
     function siswa_detail($kelas, $idsiswa)
     {
         echo "<h1>Saya fungsi siswa detail kelas $kelas id $idsiswa</h1>";
+        $this->validasi();
+    }
+
+    //tidak bisa diakses langsung oleh browser
+    protected function  validasi()
+    {
+        echo "saya adalah fungsi protected untuk validasi";
     }
 }
