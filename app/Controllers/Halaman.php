@@ -50,4 +50,26 @@ class Halaman extends BaseController
         echo view('konten/halaman_read', $data);
         
     }
+
+    public function halaman_update($id)
+    {
+        $halamanModel = new ModelHalaman();
+
+         $rules = $this->validate([
+            'halaman_judul' => 'required',
+            'halaman_isi'   => 'required',
+        ]);
+
+        if($rules){
+            $halamanModel->update($id,[
+               
+                "halaman_judul" => $this->request->getPost('halaman_judul'),
+                "halaman_isi"   => $this->request->getPost('halaman_isi'), 
+            ]);
+            return redirect('halaman/read','refresh');
+        }
+        $data['title'] = "Menlakukan update data";
+        $data['halaman_isi'] = $halamanModel->find($id);
+        echo view('konten/halaman_update', $data);
+    }
 }

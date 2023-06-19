@@ -13,7 +13,7 @@
                     <td><?= $value['halaman_judul'] ?></td>
                     <td><?= $value['halaman_isi'] ?></td>
                     <td>
-                        <a href="<?= base_url()?>halaman/halaman_update">update</a>
+                        <a href="<?= base_url()?>halaman/halaman_update/<?= $value['halaman_id'] ?>">update</a>
                     </td>
                 </tr>
 
