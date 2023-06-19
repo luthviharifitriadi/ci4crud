@@ -86,4 +86,72 @@ class Halaman extends BaseController
         $data = $halamankustom->getData();
         print_r($data);
     }
+
+
+    public function halaman_form_validasi()
+    {
+        $data = [
+            'error' => null
+        ];
+        if($this->request->getMethod() == 'post'){
+            //var_dump($this->request->getVar());
+            $nama = $this->request->getVar('nama');
+            $email = $this->request->getVar('email');
+            $password = $this->request->getVar('password');
+            $konfirmasi_password = $this->request->getVar('konfirmasi_password');
+
+            $validation = \Config\Services::validation();
+
+            $aturan = [
+                "nama"  => [
+                    'label' => "Nama",
+                    "rules" => "required|min_length[5]",
+                    "errors" => [
+                        'required' => "{field} harus diisikan",
+                        'min_length' => "{field} harus berukuran setidaknya 5 karakter"
+                    ],
+                ],
+                "email"  => [
+                    'label' => "Email",
+                    "rules" => "required|valid_email",
+                    "errors" => [
+                        'required' => "{field} harus diisikan",
+                        'valid_email' => "Alamat Email Tidak Valid"
+                    ],
+                ],
+                "password"  => [
+                    'label' => "password",
+                    "rules" => "required",
+                    "errors" => [
+                        'required' => "{field} harus diisikan",
+                    ],
+                ],
+                "konfirmasi_password"  => [
+                    'label' => "Konfirmasi password",
+                    "rules" => "required|matches[password]",
+                    "errors" => [
+                        'required' => "{field} harus diisikan",
+                        'matches'  => "konfirmasi Password tidak sesuai dengan password"
+                    ],
+                ],
+            ];
+
+            $validation->setRules($aturan);
+            if($validation->withRequest($this->request)->run()){
+                //true
+                //echo "<h1>Tidak ada kendala</h1>";
+                session()->setFlashdata('sukses', 'berhasil melakukan validasi data');
+                return redirect()->back();
+            }else{
+                //false
+                $error = $validation->getErrors();
+                //$data['error'] = $error;
+                session()->setFlashdata('error', $error);
+                return redirect()->back()->withInput();
+                
+                //echo "<h1>Ada Kendala</h1>";
+            }
+        }
+        echo view("konten/halaman_form_validasi", $data);
+    }
 }
