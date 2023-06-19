@@ -72,4 +72,10 @@ class Halaman extends BaseController
         $data['halaman_isi'] = $halamanModel->find($id);
         echo view('konten/halaman_update', $data);
     }
+
+    public function delete($id){
+        $halamanModel = new ModelHalaman();
+        $halamanModel->delete($id);
+        return redirect('halaman/read');
+    }
 }

@@ -14,6 +14,7 @@
                     <td><?= $value['halaman_isi'] ?></td>
                     <td>
                         <a href="<?= base_url()?>halaman/halaman_update/<?= $value['halaman_id'] ?>">update</a>
+                        <a href="<?= base_url()?>halaman/halaman_delete/<?= $value['halaman_id'] ?>">delete</a>
                     </td>
                 </tr>
 
