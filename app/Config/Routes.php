@@ -31,6 +31,7 @@ $routes->group('halaman', static function ($routes){
     $routes->get('read', 'halaman::read');
     $routes->add( 'halaman_update/(:num)', 'Halaman::halaman_update/$1');
     $routes->get('halaman_delete/(:num)', 'Halaman::delete/$1');
+    $routes->get('halaman_cek', 'Halaman::halaman_cek');
 });
 // The Auto Routing (Legacy) is very dangerous. It is easy to create vulnerable apps
 // where controller filters or CSRF protection are bypassed.

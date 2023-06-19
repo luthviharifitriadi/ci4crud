@@ -3,7 +3,9 @@
 namespace App\Controllers;
 
 use App\Models\ModelHalaman;
+use App\Models\ModelKustom;
 use App\Controllers\BaseController;
+
 
 
 class Halaman extends BaseController
@@ -77,5 +79,11 @@ class Halaman extends BaseController
         $halamanModel = new ModelHalaman();
         $halamanModel->delete($id);
         return redirect('halaman/read');
+    }
+
+    public function halaman_cek(){
+        $halamankustom = new ModelKustom();
+        $data = $halamankustom->getData();
+        print_r($data);
     }
 }
